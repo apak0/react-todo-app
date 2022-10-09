@@ -4,7 +4,7 @@ function Form({setTodos, todos}) {
   
   const [form, setForm] = useState({name:""})
 
-
+  console.log(form);
   const handleChangeForm = (e) => {
     setForm({...form, [e.target.name]: e.target.value} )
    };
