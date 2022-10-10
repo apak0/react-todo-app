@@ -28,12 +28,13 @@ const handleSubmit = (e) => {
 
   return (
 
-<header class="header">
+<header className="header">
 		<h1>todos</h1>
-		<form >
-			<input property="newTodo" className="new-todo"
+		<form  onSubmit={handleSubmit} >
+			<input onChange={handleChangeForm} property="newTodo" className="new-todo"
 					 placeholder="What needs to be done?"
-					 autofocus/>
+           name='name'
+					 />
 		</form>
 	</header>
 

@@ -28,7 +28,7 @@ function List({todos}) {
 
   <ul className="todo-list">
     {
-      todos.map((todo, index)=>{
+      todos.map((todo, index)=>
     
     <li key={index} className="todo-list" mv-multiple="todo"
       // className="[if(done, 'completed')]"
@@ -39,7 +39,7 @@ function List({todos}) {
         <button className="destroy" mv-action="delete(todo)"></button>
       </div>
     </li>
-    }
+    
     )
   }
   </ul>

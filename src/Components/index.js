@@ -17,7 +17,7 @@ function Components () {
 
     
     return(
-        <div style={{textAlign:"center"}} className="todoapp" >
+        <div className="todoapp" >
             <Form setTodos={setTodos} todos={todos} />
             <List todos={todos} />
             <Footer/>
