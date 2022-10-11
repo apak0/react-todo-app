@@ -1,52 +1,76 @@
-import React from 'react'
+import React from "react";
 
-function List({todos}) {
-  return (
-    // <div>
-    //   <ul>
-       
-    //       {
-    //         todos.map((todo, index)=>
-    //           <li key={index} className="todo-list"  >
-    //             {todo.name}
-    //           </li>
-    //           )
-    //       }
-       
-    //   </ul>
-    // </div>
+function List({setTodos, todos, hide }) {
 
-<section hidden="[count(todo) = 0]" className="main">
+  const checkedTodo = (e) => {
 
-  <input property="toggleAll" id="toggle-all"
-      className="toggle-all" type="checkbox"
-      // checked="[todoLeft = 0]"
-      />
-  <label htmlFor='toggle-all' mv-action="set(done, !toggleAll)">
-    Mark all as complete
-  </label>
+  }
 
-  <ul className="todo-list">
-    {
-      todos.map((todo, index)=>
-    
-    <li key={index} className="todo-list" mv-multiple="todo"
-      // className="[if(done, 'completed')]"
-      hidden="[(done and activeFilter = 'active') or (!done and activeFilter = 'completed')]">
-      <div className="view">
-        <input property="done" className="toggle" type="checkbox"/>
-        <label property="text">{todo.name}</label>
-        <button className="destroy" mv-action="delete(todo)"></button>
-      </div>
-    </li>
-    
+
+  const deleteTodo = (e) => {
+    setTodos(todos.filter((todo) => parseInt(todo.id) !== parseInt(e.target.id))
     )
   }
-  </ul>
-</section>          
 
 
-  )
+  return (
+  
+
+    <section className="main">
+       <input
+        property="toggleAll"
+        id="toggle-all"
+        className="toggle-all"
+        type="checkbox"
+        
+      />
+      <label htmlFor="toggle-all">Mark all as complete </label>
+
+      <ul className="todo-list">
+      {todos.map((todo, index)=> (
+        
+
+        
+        <li key={index}>
+          <div>
+
+          <input
+                className="toggle"
+                type="checkbox"
+                defaultChecked= "checked"
+                
+              
+                
+                // işaretlenme durumu değiştiğinde id kullanarak veriyi state'e set ediyoruz.
+              />
+
+          <label>{todo.todo}</label>
+
+          <button
+          className="destroy"
+          id={todo.id}
+          onClick={deleteTodo}>
+        </button>        
+              
+        
+
+        </div>
+
+        </li>
+
+        
+      )
+      )}
+      </ul>
+      
+    
+
+    </section>
+
+
+   
+
+  );
 }
 
-export default List
+export default List;

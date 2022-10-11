@@ -9,18 +9,21 @@ function Components () {
 
     const [todos, setTodos] = useState([]);
 
+
+
     useEffect(()=> {
         console.log(todos)
     }, [todos]);
 
+    const [hide, setHide] = useState("All");
 
 
     
     return(
         <div className="todoapp" >
             <Form setTodos={setTodos} todos={todos} />
-            <List todos={todos} />
-            <Footer/>
+            <List setTodos={setTodos} todos={todos} hide={hide} />
+            <Footer setTodos={setTodos} todos={todos} setHide={setHide} />
 
         </div>
 

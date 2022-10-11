@@ -2,24 +2,33 @@ import {useState, useEffect} from 'react'
 
 function Form({setTodos, todos}) {
   
-  const [form, setForm] = useState({name:""})
+  const [form, setForm] = useState("")
 
 
   const handleChangeForm = (e) => {
-    setForm({...form, [e.target.name]: e.target.value} )
+    setForm(e.target.value )
    };
 
    
 const handleSubmit = (e) => {
   e.preventDefault();
 
-  if(form.name === ""){
+  if(form === ""){
     return false
   };
 
-  setTodos([...todos, form])
-  setForm({name:""})
+  setTodos([...todos, {
+    id: todos.length >0 ? todos[todos.length - 1].id +1 : 0,
+    todo: form,
+    checked: false,
+  },
+  ]);
+ 
 };
+
+useEffect(()=> {
+  setForm("")
+},[todos])
 
  
 
@@ -33,7 +42,8 @@ const handleSubmit = (e) => {
 		<form  onSubmit={handleSubmit} >
 			<input onChange={handleChangeForm} property="newTodo" className="new-todo"
 					 placeholder="What needs to be done?"
-           name='name'
+           value={form}
+           
 					 />
 		</form>
 	</header>

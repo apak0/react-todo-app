@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Footer() {
+function Footer({setTodos,todos, setHide}) {
   return (
     <footer>
       	<meta property="todoDone" content="[count(todo where done)]"/>
