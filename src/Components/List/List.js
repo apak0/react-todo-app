@@ -2,16 +2,27 @@ import React from "react";
 
 function List({setTodos, todos, hide }) {
 
+  // const checkedTodo = (e) => {
+  //   let newTodos = todos.map((todo) => {
+  //     if (parseInt(todo.id) === parseInt(e.target.id)) {
+  //       return {...todo, checked: !todo.checked};
+  //     }
+  //     return todo;
+  //   });
+  //   setTodos(newTodos);
+  // };
+
   const checkedTodo = (e) => {
+    // Uyumlu id'yi bulduktan sonra işaretli olma durumunu(checked) değiştiriyoruz.
     let newTodos = todos.map((todo) => {
       if (parseInt(todo.id) === parseInt(e.target.id)) {
-        return {...todo, checked: !todo.checked};
+        // id'ler eşleşebilsin diye parseInt kullanarak integera çevirdik.
+        return { ...todo, checked: !todo.checked };
       }
       return todo;
     });
-    setTodos(newTodos);
+    setTodos(newTodos); // işaretli olma durumunu set ediyoruz.
   };
-
 
   const deleteTodo = (e) => {
     setTodos(todos.filter((todo) => parseInt(todo.id) !== parseInt(e.target.id))
@@ -27,7 +38,7 @@ function List({setTodos, todos, hide }) {
     } else if (e.checked === false && hide === "Completed"){
       return "hidden";
     }
-  }
+  };
 
   return (
   
@@ -37,50 +48,30 @@ function List({setTodos, todos, hide }) {
         property="toggleAll"
         id="toggle-all"
         className="toggle-all"
-        type="checkbox"
-        
-        
-      />
-      <label htmlFor="toggle-all">Mark all as complete </label>
+        type="checkbox"/>
+       <label htmlFor="toggle-all">Mark all as complete </label>
 
-      <ul className="todo-list">
-      {todos.map((todo, index)=> (
-        
-
-        
-        <li key={todo.id} id={todo.id} className={isCompleted(todo)} >
-          <div>
-
-          <input
+        <ul className="todo-list">
+          {todos.map((todo)=> (
+          <li key={todo.id} id={todo.id} className={isCompleted(todo)} >
+            <div className="view">
+              <input
                 className="toggle"
                 type="checkbox"
                 defaultChecked={todo.checked}
                 id={todo.id}
                 onClick={checkedTodo} />
-                
- 
+              <label>{todo.todo}</label>
 
-          <label>{todo.todo}</label>
-
-          <button
-          className="destroy"
-          id={todo.id}
-          onClick={deleteTodo}>
-        </button>        
-              
-        
-
-        </div>
-
-        </li>
-
-        
-      )
-      )}
-      </ul>
-      
-    
-
+              <button
+                className="destroy"
+                id={todo.id}
+                onClick={deleteTodo}>
+              </button>        
+            </div>
+          </li>
+          ))};
+        </ul>
     </section>
 
 
