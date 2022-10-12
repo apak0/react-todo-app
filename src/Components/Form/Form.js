@@ -18,7 +18,7 @@ const handleSubmit = (e) => {
   };
 
   setTodos([...todos, {
-    id: todos.length >0 ? todos[todos.length - 1].id +1 : 0,
+    id: todos.length > 0 ? todos[todos.length - 1].id +1 : 0,
     todo: form,
     checked: false,
   },

@@ -3,8 +3,14 @@ import React from "react";
 function List({setTodos, todos, hide }) {
 
   const checkedTodo = (e) => {
-
-  }
+    let newTodos = todos.map((todo) => {
+      if (parseInt(todo.id) === parseInt(e.target.id)) {
+        return {...todo, checked: !todo.checked};
+      }
+      return todo;
+    });
+    setTodos(newTodos);
+  };
 
 
   const deleteTodo = (e) => {
@@ -12,6 +18,16 @@ function List({setTodos, todos, hide }) {
     )
   }
 
+
+  const isCompleted = (e) => {
+    if(e.checked === true && hide === "All") {
+      return "completed";
+    }else if (e.checked === true && hide === "Active"){
+      return "completed hidden";
+    } else if (e.checked === false && hide === "Completed"){
+      return "hidden";
+    }
+  }
 
   return (
   
@@ -23,6 +39,7 @@ function List({setTodos, todos, hide }) {
         className="toggle-all"
         type="checkbox"
         
+        
       />
       <label htmlFor="toggle-all">Mark all as complete </label>
 
@@ -31,18 +48,17 @@ function List({setTodos, todos, hide }) {
         
 
         
-        <li key={index}>
+        <li key={todo.id} id={todo.id} className={isCompleted(todo)} >
           <div>
 
           <input
                 className="toggle"
                 type="checkbox"
-                defaultChecked= "checked"
+                defaultChecked={todo.checked}
+                id={todo.id}
+                onClick={checkedTodo} />
                 
-              
-                
-                // işaretlenme durumu değiştiğinde id kullanarak veriyi state'e set ediyoruz.
-              />
+ 
 
           <label>{todo.todo}</label>
 
