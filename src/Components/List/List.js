@@ -31,7 +31,7 @@ const isCompleted = (e) => {
   return (
   
 
-    <di className="main">
+    <div className="main">
        <input
         property="toggleAll"
         id="toggle-all"
@@ -58,9 +58,9 @@ const isCompleted = (e) => {
               </button>        
             </div>
           </li>
-          ))};
+          ))}
         </ul>
-    </di>
+    </div>
 
 
    
