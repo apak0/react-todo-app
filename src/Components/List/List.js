@@ -41,13 +41,14 @@ const isCompleted = (e) => {
 
         <ul className="todo-list">
           {todos.map((todo)=> (
-          <li key={todo.id} id={todo.id} className={isCompleted(todo)} onClick={checkedTodo}  >
+          <li key={todo.id} id={todo.id} className={isCompleted(todo)} >
             <div className="view">
               <input
                 className="toggle"
                 type="checkbox"
                 defaultChecked={todo.checked}
                 id={todo.id}
+                onClick={checkedTodo} 
                 />
               <label>{todo.todo}</label>
 
