@@ -28,16 +28,27 @@ const isCompleted = (e) => {
     ); 
   };
 
+  const selectAllTodo = (e) => {
+    if( e.target.id === "toggle-all-todos") {
+      todos.map((todo)=> 
+        todo.defaultChecked = true
+      )
+    }
+
+  
+   } 
+
   return (
   
 
-    <div className="main">
+    <div className="main" onClick={selectAllTodo}>
        <input
         property="toggleAll"
         id="toggle-all"
         className="toggle-all"
-        type="checkbox"/>
-       <label htmlFor="toggle-all">Mark all as complete </label>
+        type="checkbox"
+        />
+       <label id="toggle-all-todos" htmlFor="toggle-all" >Mark all as complete </label>
 
         <ul className="todo-list">
           {todos.map((todo)=> (

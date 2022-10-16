@@ -15,7 +15,7 @@ const handleSubmit = (e) => {
 
   if(form === ""){
     return false
-  };
+  }
 
   setTodos([...todos, {
     id: todos.length > 0 ? todos[todos.length - 1].id +1 : 0,
@@ -48,20 +48,7 @@ useEffect(()=> {
 		</form>
 	</header>
 
-/* 
-   <header>
 
-    <h1> Todos </h1>
-    <form onSubmit={handleSubmit} >
-    <input 
-    name="name" 
-    onChange={handleChangeForm}
-    value={form.name}
-    />
-    </form>
-
-
-   </header> */
   )
 }
 
