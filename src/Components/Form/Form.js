@@ -13,7 +13,7 @@ function Form({setTodos, todos}) {
 const handleSubmit = (e) => {
   e.preventDefault();
 
-  if(form === ""){
+  if(form.trim().length === 0){
     return false
   }
 

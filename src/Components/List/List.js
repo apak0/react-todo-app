@@ -23,9 +23,7 @@ const isCompleted = (e) => {
   };
 
   const deleteTodo = (e) => {
-    setTodos(
-      todos.filter((todo) => parseInt(todo.id) !== parseInt(e.target.id))
-    ); 
+    setTodos(todos.filter((todo) => parseInt(todo.id) !== parseInt(e.target.id))); 
   };
 
   const selectAllTodo = (e) => {
@@ -38,6 +36,30 @@ const isCompleted = (e) => {
   
    } 
 
+   const turnTodosActiveted = (e) => {
+    
+      const newtg = todos.map((item) => {
+        if (item.checked === true ) {
+          return { ...item, defaultChecked: true };
+        } else {
+          return { ...item, defaultChecked: false };
+        }
+      });
+    
+      setTodos(newtg);
+    }
+  //     if (page === "All") {
+  //       setTodos(newtg);
+  //     } else if (page === "Active") {
+  //       setTodos((!toggle && []) || newtg);
+  //     } else if (page === "Completed") {
+  //       setTodos((toggle && []) || newtg);
+  //     }
+  
+  //     setToggle(!toggle);
+  //   };
+  //  }
+
   return (
   
 
@@ -47,8 +69,9 @@ const isCompleted = (e) => {
         id="toggle-all"
         className="toggle-all"
         type="checkbox"
+        onClick={turnTodosActiveted}
         />
-       <label id="toggle-all-todos" htmlFor="toggle-all" >Mark all as complete </label>
+       <label id="toggle-all-todos" htmlFor="toggle-all"  >Mark all as complete </label>
 
         <ul className="todo-list">
           {todos.map((todo)=> (
