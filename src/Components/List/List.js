@@ -18,6 +18,7 @@ const isCompleted = (e) => {
     }else if (e.checked === true && hide === "Active"){
       return "complated hidden";
     } else if (e.checked === false && hide === "Completed"){
+  
       return "hidden";
     }
   };
@@ -26,61 +27,56 @@ const isCompleted = (e) => {
     setTodos(todos.filter((todo) => parseInt(todo.id) !== parseInt(e.target.id))); 
   };
 
-  const selectAllTodo = (e) => {
-    if( e.target.id === "toggle-all-todos") {
-      todos.map((todo)=> 
-        todo.defaultChecked = true
-      )
-    }
+  const handleChange = (e) => {
+    this.onChange({ checked: !this.checked });
+ }
 
-  
-   } 
 
-   const turnTodosActiveted = (e) => {
-    
-      const newtg = todos.map((item) => {
-        if (item.checked === true ) {
-          return { ...item, defaultChecked: true };
-        } else {
-          return { ...item, defaultChecked: false };
-        }
-      });
-    
-      setTodos(newtg);
+   
+   const allComplete = (e) => {
+    let notCompleted = todos.filter((todo) => todo.checked === false)
+    if(notCompleted.length > 0){
+        let allCompleted = todos.map((todo) => {
+            if(todo.checked === false || todo.checked === true){
+                return{...todo, checked: true};
+            }
+            return todo;
+        })
+        setTodos(allCompleted) 
     }
-  //     if (page === "All") {
-  //       setTodos(newtg);
-  //     } else if (page === "Active") {
-  //       setTodos((!toggle && []) || newtg);
-  //     } else if (page === "Completed") {
-  //       setTodos((toggle && []) || newtg);
-  //     }
-  
-  //     setToggle(!toggle);
-  //   };
-  //  }
+    if(notCompleted.length === 0){
+        let allNotCompleted = todos.map((todo) => {
+            return {...todo, checked: false}
+        })
+        setTodos(allNotCompleted)
+    }
+}
 
   return (
   
 
-    <div className="main" onClick={selectAllTodo}>
+    <div className="main">
        <input
         property="toggleAll"
         id="toggle-all"
         className="toggle-all"
         type="checkbox"
-        onClick={turnTodosActiveted}
+        onClick={allComplete}
+        onChange={this.handleChange}
         />
        <label id="toggle-all-todos" htmlFor="toggle-all"  >Mark all as complete </label>
 
         <ul className="todo-list">
+         
+        
           {todos.map((todo)=> (
           <li key={todo.id} id={todo.id} className={isCompleted(todo)} >
             <div className="view">
               <input
                 className="toggle"
                 type="checkbox"
-                defaultChecked={todo.checked}
+                defaultChecked={false}
+               
                 id={todo.id}
                 onClick={checkedTodo} 
                 />
