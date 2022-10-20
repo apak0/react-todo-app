@@ -27,18 +27,15 @@ const isCompleted = (e) => {
     setTodos(todos.filter((todo) => parseInt(todo.id) !== parseInt(e.target.id))); 
   };
 
-  const handleChange = (e) => {
-    this.onChange({ checked: !this.checked });
- }
-
+ 
 
    
    const allComplete = (e) => {
-    let notCompleted = todos.filter((todo) => todo.checked === false)
+    let notCompleted = todos.filter((todo) => todo.defaultChecked === false)
     if(notCompleted.length > 0){
         let allCompleted = todos.map((todo) => {
-            if(todo.checked === false || todo.checked === true){
-                return{...todo, checked: true};
+            if(todo.defaultChecked === false || todo.defaultChecked === true){
+                return{...todo, defaultChecked: true};
             }
             return todo;
         })
@@ -46,7 +43,7 @@ const isCompleted = (e) => {
     }
     if(notCompleted.length === 0){
         let allNotCompleted = todos.map((todo) => {
-            return {...todo, checked: false}
+            return {...todo, defaultChecked: false}
         })
         setTodos(allNotCompleted)
     }
@@ -62,7 +59,7 @@ const isCompleted = (e) => {
         className="toggle-all"
         type="checkbox"
         onClick={allComplete}
-        onChange={this.handleChange}
+        
         />
        <label id="toggle-all-todos" htmlFor="toggle-all"  >Mark all as complete </label>
 
@@ -75,7 +72,7 @@ const isCompleted = (e) => {
               <input
                 className="toggle"
                 type="checkbox"
-                defaultChecked={false}
+                defaultChecked={todo.defaultChecked}
                
                 id={todo.id}
                 onClick={checkedTodo} 
