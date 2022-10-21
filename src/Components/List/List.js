@@ -31,11 +31,11 @@ const isCompleted = (e) => {
 
    
    const allComplete = (e) => {
-    let notCompleted = todos.filter((todo) => todo.defaultChecked === false)
+    let notCompleted = todos.filter((todo) => todo.checked === false)
     if(notCompleted.length > 0){
         let allCompleted = todos.map((todo) => {
-            if(todo.defaultChecked === false || todo.defaultChecked === true){
-                return{...todo, defaultChecked: true};
+            if(todo.checked === false || todo.checked === true){
+                return{...todo, checked: true};
             }
             return todo;
         })
@@ -43,7 +43,7 @@ const isCompleted = (e) => {
     }
     if(notCompleted.length === 0){
         let allNotCompleted = todos.map((todo) => {
-            return {...todo, defaultChecked: false}
+            return {...todo, checked: false}
         })
         setTodos(allNotCompleted)
     }
