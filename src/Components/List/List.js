@@ -57,8 +57,6 @@ const isCompleted = (e) => {
 }
 
   return (
-  
-
     <div className="main">
        <input
         
@@ -79,13 +77,11 @@ const isCompleted = (e) => {
               <input
                 className="toggle"
                 type="checkbox"
-                readOnly
                 checked={todo.checked}
-               
                 id={todo.id}
                 onClick={checkedTodo} 
                 />
-              <label>{todo.todo}</label>
+                <label contentEditable="true" >{todo.todo}</label>
 
               <button
                 className="destroy"
@@ -97,10 +93,6 @@ const isCompleted = (e) => {
           ))}
         </ul>
     </div>
-
-
-   
-
   );
 }
 

@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 
 //  index.js deki hide state'i, todos state'ini ve bu state üzerinde değişiklik yapmamıza sağlayacak olan setTodos fonksiyonunu ayrı ayrı props olarak index.js den alıyoruz.
 function Footer({setTodos,todos, setHide}) {
@@ -13,6 +13,11 @@ function Footer({setTodos,todos, setHide}) {
   const clearCompleted = (e) => {
     setTodos( todos.filter((check) => check.checked === false));
   }
+ 
+// footer da bulunan Seçeneklerden All olanı başlangıçta seçili olarak getiriyoruz.
+  useEffect(() => {
+    setSelect(["selected", "", ""]);
+  },[])
 
   const selectedButton = (e) => {
     switch (e.target.id) {
