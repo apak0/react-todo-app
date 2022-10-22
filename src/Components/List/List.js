@@ -72,7 +72,7 @@ const isCompleted = (e) => {
               <input
                 className="toggle"
                 type="checkbox"
-                defaultChecked={todo.defaultChecked}
+                checked={todo.checked}
                
                 id={todo.id}
                 onClick={checkedTodo} 
