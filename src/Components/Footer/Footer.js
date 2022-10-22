@@ -1,11 +1,15 @@
 import {useState} from 'react'
 
+//  index.js deki hide state'i, todos state'ini ve bu state üzerinde değişiklik yapmamıza sağlayacak olan setTodos fonksiyonunu ayrı ayrı props olarak index.js den alıyoruz.
 function Footer({setTodos,todos, setHide}) {
 
+  // Tamamlanmamış todoları bir değişkene atıyoruz.
   const unCompleted = todos.filter((check) => check.checked === false);
 
+  // select diye bir state oluşturuyoruz.
   const [select, setSelect] = useState("selected", "", "")
 
+  // tamamlanmış todoları listeden kaldırıp todos state'ini güncelliyoruz.
   const clearCompleted = (e) => {
     setTodos( todos.filter((check) => check.checked === false));
   }
@@ -38,8 +42,8 @@ function Footer({setTodos,todos, setHide}) {
 			
 		  </span>
 
-      <meta property="activeFilter" content="all"/>
-
+     
+{/* select state'indeki indexe göre className verip UI'ı güncelliyoruz. Select state'inin ise selectedButton fonksiyonuyla değiştiriyoruz ki tıkladığımız a linkinin css'i seçilsin. */}
       <ul className='filters' >
         <li>
           <a className={select[0]} id="All" onClick={selectedButton} >All</a>

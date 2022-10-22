@@ -1,7 +1,9 @@
 import React from "react";
 
+//  index.js deki hide state'i, todos state'ini ve bu state üzerinde değişiklik yapmamıza sağlayacak olan setTodos fonksiyonunu ayrı ayrı props olarak index.js den alıyoruz.
 function List({todos, setTodos, hide }) {
 
+  // todoların check edilme durumunu kontrol etmek için yazdığımzı fonksiyon
   const checkedTodo = (e) => {
     let newTodos = todos.map((todo) => {
       if (parseInt(todo.id) === parseInt(e.target.id)) {
@@ -12,27 +14,32 @@ function List({todos, setTodos, hide }) {
     setTodos(newTodos);
   };
 
+
+
+  //  todoların tamamlanıp tamamlanmaması ve hepsinin olduğu durumlarda alacakları className'leri yönettiğimiz fonksiyon.
 const isCompleted = (e) => {
     if(e.checked === true && hide === "All") {
       return "completed";
     }else if (e.checked === true && hide === "Active"){
-      return "complated hidden";
+      return "completed hidden";
     } else if (e.checked === false && hide === "Completed"){
   
       return "hidden";
     }
   };
 
+  // bir todoyu id'sine göre silmemizi sağlayan fonksiyon.
   const deleteTodo = (e) => {
     setTodos(todos.filter((todo) => parseInt(todo.id) !== parseInt(e.target.id))); 
   };
 
  
 
-   
+  // Input'un yanında bulunan, bütün todoların ticklenmiş olma durumunu değiştirdiğimiz fonksiyon.
    const allComplete = (e) => {
     let notCompleted = todos.filter((todo) => todo.checked === false)
     if(notCompleted.length > 0){
+      
         let allCompleted = todos.map((todo) => {
             if(todo.checked === false || todo.checked === true){
                 return{...todo, checked: true};
@@ -54,11 +61,11 @@ const isCompleted = (e) => {
 
     <div className="main">
        <input
-        property="toggleAll"
+        
         id="toggle-all"
         className="toggle-all"
         type="checkbox"
-        onClick={allComplete}
+        onChange={allComplete}
         
         />
        <label id="toggle-all-todos" htmlFor="toggle-all"  >Mark all as complete </label>
@@ -72,6 +79,7 @@ const isCompleted = (e) => {
               <input
                 className="toggle"
                 type="checkbox"
+                readOnly
                 checked={todo.checked}
                
                 id={todo.id}
